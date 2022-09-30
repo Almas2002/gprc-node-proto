@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package user;
+
+message CreateRoleRequest {
+  string value = 1;
+  string description = 2;
+}
+message CreateRoleResponse {
+  int64 id = 1;
+}
+message GetRolesRequest {
+
+}
+
+message CreateUserRequest {
+  string phone = 1;
+  string password = 2;
+}
+message GetUserByIdRequest {
+  int64 userId = 1;
+}
+message GetUserByIdResponse {
+  int64  userId = 1;
+  repeated Roles roles = 2;
+}
+message LoginUserResponse {
+  int64  id = 1;
+  string phone = 2;
+  string password = 3;
+}
+message CreateUserResponse {
+  int64 id = 1;
+}
+message GetRolesResponse {
+  repeated Roles roles = 1;
+}
+message Empty{
+
+}
+message GetUserForCheck {
+  string  phone = 1;
+}
+message Roles {
+  int64 id = 1;
+  string value = 2;
+  string description = 3;
+}
+message AddRoleAndRemoveRequest {
+  int64 userId = 1;
+  string  role = 2;
+}
+
+service RoleService {
+  rpc CreateRole(CreateRoleRequest) returns (CreateRoleResponse);
+  rpc GetRoles (GetRolesRequest) returns (GetRolesResponse);
+}
+
+service UserService {
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  rpc GetUser(CreateUserRequest) returns (CreateUserResponse);
+  rpc GetUserForLogin(GetUserForCheck) returns (LoginUserResponse);
+  rpc GetUserById(GetUserByIdRequest) returns (GetUserByIdResponse);
+  rpc AddRoleToUser(AddRoleAndRemoveRequest) returns (Empty);
+  rpc RemoveRoleToUser(AddRoleAndRemoveRequest) returns (Empty);
+}

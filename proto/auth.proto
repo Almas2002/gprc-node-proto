@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package auth;
+
+
+message AuthResponse{
+  string access_token = 1;
+  string refresh_token = 2;
+}
+
+message AuthRequest{
+  string phone = 1;
+  string password = 2;
+}
+message LogoutRequest{
+  string refresh_token = 1;
+}
+message LogoutResponse{
+
+}
+message RefreshRequest{
+  string refresh_token = 1;
+}
+message RefreshResponse{
+  string access_token = 1;
+  string refresh_token = 2;
+}
+
+service AuthService{
+  rpc login(AuthRequest) returns (AuthResponse);
+  rpc registration(AuthRequest) returns (AuthResponse);
+  rpc logout(LogoutRequest) returns (LogoutResponse);
+  rpc refresh(RefreshRequest) returns (RefreshResponse);
+}
