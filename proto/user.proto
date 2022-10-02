@@ -8,6 +8,8 @@ message CreateRoleRequest {
 }
 message CreateRoleResponse {
   int64 id = 1;
+  repeated string error = 2;
+  int32 status = 3;
 }
 message GetRolesRequest {
 
@@ -19,24 +21,33 @@ message CreateUserRequest {
 }
 message GetUserByIdRequest {
   int64 userId = 1;
+  repeated string error = 2;
+  int32 status = 3;
 }
 message GetUserByIdResponse {
   int64  userId = 1;
   repeated Roles roles = 2;
+  repeated string error = 3;
+  int32 status = 4;
 }
 message LoginUserResponse {
   int64  id = 1;
-  string phone = 2;
-  string password = 3;
+  repeated string error = 2;
+  int32 status = 3;
 }
 message CreateUserResponse {
   int64 id = 1;
+  repeated string error = 2;
+  int32 status = 3;
 }
 message GetRolesResponse {
   repeated Roles roles = 1;
+  repeated string error = 2;
+  int32 status = 3;
 }
 message Empty{
-
+  repeated string error = 1;
+  int32 status = 2;
 }
 message GetUserForCheck {
   string  phone = 1;
