@@ -6,6 +6,8 @@ package auth;
 message AuthResponse{
   string access_token = 1;
   string refresh_token = 2;
+  repeated  string error = 3;
+  int32 status = 4;
 }
 
 message AuthRequest{
@@ -24,6 +26,8 @@ message RefreshRequest{
 message RefreshResponse{
   string access_token = 1;
   string refresh_token = 2;
+  repeated  string error = 3;
+  int32 status = 4;
 }
 
 service AuthService{
